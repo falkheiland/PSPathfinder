@@ -54,13 +54,19 @@ function Get-PFLocation
   {
     $UriArray = @($ComputerName, $TCPPort, $ApiVersion)
     $BaseURL = ('https://{0}:{1}/api/v{2}/infrastructure/location' -f $UriArray)
-    $FunctionStringParams = [ordered]@{
-      Page     = $Page
-      PageSize = $PageSize
-      Filter   = $Filter
-      Sort     = $Sort
+    switch ($PsCmdlet.ParameterSetName)
+    {
+      { 'Get' -or 'Buildings' }
+      {
+        $FunctionStringParams = [ordered]@{
+          Page     = $Page
+          PageSize = $PageSize
+          Filter   = $Filter
+          Sort     = $Sort
+        }
+        $FunctionString = Get-PFFunctionString @FunctionStringParams
+      }
     }
-    $FunctionString = Get-PFFunctionString @FunctionStringParams
   }
   Process
   {

@@ -45,13 +45,19 @@ function Get-PFTagGroup
   {
     $UriArray = @($ComputerName, $TCPPort, $ApiVersion)
     $BaseURL = ('https://{0}:{1}/api/v{2}/tags/taggroup' -f $UriArray)
-    $FunctionStringParams = [ordered]@{
-      Page     = $Page
-      PageSize = $PageSize
-      Filter   = $Filter
-      sort     = $Sort
+    switch ($PsCmdlet.ParameterSetName)
+    {
+      'Get'
+      {
+        $FunctionStringParams = [ordered]@{
+          Page     = $Page
+          PageSize = $PageSize
+          Filter   = $Filter
+          Sort     = $Sort
+        }
+        $FunctionString = Get-PFFunctionString @FunctionStringParams
+      }
     }
-    $FunctionString = Get-PFFunctionString @FunctionStringParams
   }
   Process
   {

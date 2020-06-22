@@ -17,7 +17,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
     }
 
     [object[]]$params = (Get-ChildItem function:\$Script:FunctionName).Parameters.Keys
-    $KnownParameters = 'Computername', 'TCPPort', 'ApiVersion', 'Credential', 'Id', 'Page', 'PageSize', 'Filter', 'Sort'
+    $KnownParameters = 'Computername', 'TCPPort', 'ApiVersion', 'Credential', 'Id', 'Page', 'PageSize', 'Filter', 'Sort', 'Buildings'
 
     It "Should contain our specific parameters" {
       (@(Compare-Object -ReferenceObject $KnownParameters -DifferenceObject $params -IncludeEqual |
@@ -52,22 +52,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     Mock 'Get-PFFunctionString' { }
 
-    Mock 'Get-PFPropertyCast' {
-      [pscustomobject]@{
-        Postalcode = [String]'01234'
-        Diagram    = [Xml]'<mock_root></mock_root>'
-        Street     = [String]'Hauptstraße 1'
-        Createdby  = [String]'Max Mustermann'
-        Id         = [Int]15
-        Viewmode   = [int]2
-        Modifiedby = [String]'Max Mustermann'
-        Created    = [DateTime]'2018-02-24T13:48:00.1'
-        Name       = [String]'Berlin'
-        Modified   = [DateTime]'2018-05-24T17:03:22.1'
-        Country    = [String]'Deutschland'
-      }
-    }
-
     Context "General Execution" {
 
       It 'Get-PFLocation Should not throw' {
@@ -80,7 +64,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
-    Context "Parameterset Default" {
+    Context "Parameterset Get" {
 
       $Result = Get-PFLocation
 
@@ -92,16 +76,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         }
         Assert-MockCalled @AMCParams
       }
-
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
-          Times       = 1
-          Exactly     = $true
-        }
-        Assert-MockCalled @AMCParams
-      }
-
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
@@ -120,24 +94,12 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         @($Result).Count | Should BeExactly 1
       }
 
-      It 'Result should have 11 NoteProperties' {
-        ($Result | Get-Member -MemberType NoteProperty).Count | Should BeExactly 11
-      }
-
       It 'Result.Id should be exactly 15' {
         $Result.Id | Should BeExactly 15
       }
 
       It 'Result.Id should have type [Int]' {
         $Result.Id | Should -HaveType [Int]
-      }
-
-      It 'Result.Diagram should be exactly System.Xml.XmlDocument' {
-        $Result.Diagram | Should BeExactly 'System.Xml.XmlDocument'
-      }
-
-      It 'Result.Diagram should have type [Xml]' {
-        $Result.Diagram | Should -HaveType [Xml]
       }
 
       It 'Result.Name should be exactly Berlin' {
@@ -148,19 +110,19 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         $Result.Name | Should -HaveType [String]
       }
 
-      <#
+      <# PCSCore
       It 'Result.Created should be exactly 2018-02-24T13:48:00.1000000' {
         $Result.Created | Should BeExactly '2018-02-24T13:48:00.1000000'
       }
-      #>
 
       It 'Result.Created should have type [DateTime]' {
         $Result.Created | Should -HaveType [DateTime]
       }
+      #>
 
     }
 
-    Context "Parameterset Default Page" {
+    Context "Parameterset Get Page" {
 
       Mock 'Get-PFFunctionString' { '?page=1' }
 
@@ -169,16 +131,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
       It 'Assert Get-PFFunctionString is called exactly 1 time' {
         $AMCParams = @{
           CommandName = 'Get-PFFunctionString'
-          Times       = 1
-          Exactly     = $true
-        }
-        Assert-MockCalled @AMCParams
-      }
-
-
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
           Times       = 1
           Exactly     = $true
         }
@@ -200,19 +152,40 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       Get-PFLocation -Id 15
 
-      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+      It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
-          CommandName = 'Get-PFFunctionString'
+          CommandName = 'Invoke-PFRestMethod'
           Times       = 1
           Exactly     = $true
         }
         Assert-MockCalled @AMCParams
       }
 
+    }
 
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
+    Context "Parameterset Buildings" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Items = @{
+            Name         = 'Building01'
+            Diagram      = '<mock_root></mock_root>'
+            LocationId   = 15
+            LocationName = 'Location01'
+            Id           = 1515
+            Createdby    = 'Max Mustermann'
+            Modifiedby   = 'Max Mustermann'
+            Created      = '2018-02-24T13:48:00.1'
+            Modified     = '2018-05-24T17:03:22.1'
+          }
+        }
+      }
+
+      $Result = Get-PFLocation -Id 1515 -Buildings
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
         $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
+          CommandName = 'Get-PFFunctionString'
           Times       = 1
           Exactly     = $true
         }
@@ -226,6 +199,10 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
           Exactly     = $true
         }
         Assert-MockCalled @AMCParams
+      }
+
+      It 'Result.Id should be exactly 1515' {
+        $Result.Id | Should BeExactly 1515
       }
 
     }

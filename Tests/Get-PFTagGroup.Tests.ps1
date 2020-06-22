@@ -35,36 +35,22 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
     Mock 'Invoke-PFRestMethod' {
       [pscustomobject]@{
         Items = @{
-          Name        = 'Taggroup01'
-          Guid        = 'BB9E1375-7231-4401-A22E-B33129F5655C'
-          RootGroupId = 1
-          TagIds      = 1, 2
-          TagGroupIds = 3, 4
-          Id          = 43076
-          Created     = '2015-06-26T10:53:40.637'
-          Modified    = '2015-06-29T10:49:16.487'
-          CreatedBy   = 'Pathfinder'
-          ModifiedBy  = 'Pathfinder'
+          Name          = 'Taggroup01'
+          Color         = -1
+          RootGroupId   = 1
+          RootGroupName = 'RootGroupName'
+          TagGroupId    = 3
+          TagGroupName  = 'TagGroupName'
+          Id            = 43076
+          Created       = '2015-06-26T10:53:40.637'
+          Modified      = '2015-06-29T10:49:16.487'
+          CreatedBy     = 'Pathfinder'
+          ModifiedBy    = 'Pathfinder'
         }
       }
     }
 
     Mock 'Get-PFFunctionString' { }
-
-    Mock 'Get-PFPropertyCast' {
-      [pscustomobject]@{
-        Name        = [String]'Taggroup01'
-        Guid        = [GUID]'BB9E1375-7231-4401-A22E-B33129F5655C'
-        RootGroupId = [Int]1
-        TagIds      = [Array](1, 2)
-        TagGroupIds = [Array](3, 4)
-        Id          = [Int]43076
-        Created     = [DateTime]'2015-06-26T10:53:40.637'
-        Modified    = [DateTime]'2015-06-29T10:49:16.487'
-        CreatedBy   = [String]'Pathfinder'
-        ModifiedBy  = [String]'Pathfinder'
-      }
-    }
 
     Context "General Execution" {
 
@@ -78,7 +64,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
-    Context "Parameterset Default" {
+    Context "Parameterset Get" {
 
       $Result = Get-PFTagGroup
 
@@ -90,16 +76,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         }
         Assert-MockCalled @AMCParams
       }
-
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
-          Times       = 1
-          Exactly     = $true
-        }
-        Assert-MockCalled @AMCParams
-      }
-
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
@@ -118,10 +94,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         @($Result).Count | Should BeExactly 1
       }
 
-      It 'Result should have 10 NoteProperties' {
-        ($Result | Get-Member -MemberType NoteProperty).Count | Should BeExactly 10
-      }
-
       It 'Result.Id should be exactly 43076' {
         $Result.Id | Should BeExactly 43076
       }
@@ -138,38 +110,19 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         $Result.Name | Should -HaveType [String]
       }
 
-      It 'Result.Guid should be BB9E1375-7231-4401-A22E-B33129F5655C' {
-        #$Result.Guid.ToString() | Should BeExactly 'BB9E1375-7231-4401-A22E-B33129F5655C'
-        $Result.Guid.ToString() | Should Be 'BB9E1375-7231-4401-A22E-B33129F5655C'
-      }
-
-      It 'Result.Guid should have type [GUID]' {
-        $Result.Guid | Should -HaveType [GUID]
-      }
-
-      It 'Result.TagIds should be exactly "1, 2"' {
-        $Result.TagIds | Should BeExactly @(1, 2)
-      }
-
-      <#
-      It 'Result.TagIds should have type [Array]' {
-        $Result.TagIds | Should -HaveType [Array]
-      }
-      #>
-
-      <#
+      <# PSCore
       It 'Result.Created should be exactly 2018-02-24T13:48:00.1000000' {
         $Result.Created | Should BeExactly '2018-02-24T13:48:00.1000000'
       }
-      #>
 
       It 'Result.Created should have type [DateTime]' {
         $Result.Created | Should -HaveType [DateTime]
       }
+      #>
 
     }
 
-    Context "Parameterset Default Page" {
+    Context "Parameterset Get Page" {
 
       Mock 'Get-PFFunctionString' { '?page=1' }
 
@@ -178,16 +131,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
       It 'Assert Get-PFFunctionString is called exactly 1 time' {
         $AMCParams = @{
           CommandName = 'Get-PFFunctionString'
-          Times       = 1
-          Exactly     = $true
-        }
-        Assert-MockCalled @AMCParams
-      }
-
-
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
           Times       = 1
           Exactly     = $true
         }
@@ -207,26 +150,23 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     Context "Parameterset Id" {
 
-      Get-PFTagGroup -Id 15
-
-      It 'Assert Get-PFFunctionString is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFFunctionString'
-          Times       = 1
-          Exactly     = $true
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Name          = 'Taggroup01'
+          Color         = -1
+          RootGroupId   = 1
+          RootGroupName = 'RootGroupName'
+          TagGroupId    = 3
+          TagGroupName  = 'TagGroupName'
+          Id            = 43076
+          Created       = '2015-06-26T10:53:40.637'
+          Modified      = '2015-06-29T10:49:16.487'
+          CreatedBy     = 'Pathfinder'
+          ModifiedBy    = 'Pathfinder'
         }
-        Assert-MockCalled @AMCParams
       }
 
-
-      It 'Assert Get-PFPropertyCast is called exactly 1 time' {
-        $AMCParams = @{
-          CommandName = 'Get-PFPropertyCast'
-          Times       = 1
-          Exactly     = $true
-        }
-        Assert-MockCalled @AMCParams
-      }
+      $Result = Get-PFTagGroup -Id 43076
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
@@ -235,6 +175,10 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
           Exactly     = $true
         }
         Assert-MockCalled @AMCParams
+      }
+
+      It 'Result.Id should be exactly 43076' {
+        $Result.Id | Should BeExactly 43076
       }
 
     }

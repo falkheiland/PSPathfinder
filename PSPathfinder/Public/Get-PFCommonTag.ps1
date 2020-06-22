@@ -45,13 +45,19 @@ function Get-PFCommonTag
   {
     $UriArray = @($ComputerName, $TCPPort, $ApiVersion)
     $BaseURL = ('https://{0}:{1}/api/v{2}/tags/tag' -f $UriArray)
-    $FunctionStringParams = [ordered]@{
-      Page     = $Page
-      PageSize = $PageSize
-      Filter   = $Filter
-      sort     = $Sort
+    switch ($PsCmdlet.ParameterSetName)
+    {
+      'Get'
+      {
+        $FunctionStringParams = [ordered]@{
+          Page     = $Page
+          PageSize = $PageSize
+          Filter   = $Filter
+          Sort     = $Sort
+        }
+        $FunctionString = Get-PFFunctionString @FunctionStringParams
+      }
     }
-    $FunctionString = Get-PFFunctionString @FunctionStringParams
   }
   Process
   {

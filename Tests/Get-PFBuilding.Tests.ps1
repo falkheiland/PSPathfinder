@@ -33,7 +33,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
     }
 
     Mock 'Invoke-PFRestMethod' {
-      #@(
       [pscustomobject]@{
         Items = @{
           Diagram      = '<mock_root></mock_root>'
@@ -47,7 +46,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
           Modified     = '2018-05-24T17:03:22.1'
         }
       }
-      #)
     }
 
     Mock 'Get-PFFunctionString' { }
@@ -94,10 +92,6 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         @($Result).Count | Should BeExactly 1
       }
 
-      It 'Result should have 9 NoteProperties' {
-        (@($Result)[0] | Get-Member -MemberType NoteProperty).Count
-      }
-
       It 'Result.Id should be exactly 1515' {
         $Result.Id | Should BeExactly 1515
       }
@@ -114,7 +108,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         $Result.Name | Should -HaveType [String]
       }
 
-      <#PSCore
+      <# PSCore
       It 'Result.Created should be exactly 2018-02-24T13:48:00.1' {
         $Result.Created | Should BeExactly '2018-02-24T13:48:00.1'
       }
@@ -154,7 +148,13 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     Context "Parameterset Id" {
 
-      Get-PFBuilding -Id 1515
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Id = 1515
+        }
+      }
+
+      $Result = Get-PFBuilding -Id 1515
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
@@ -163,6 +163,10 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
           Exactly     = $true
         }
         Assert-MockCalled @AMCParams
+      }
+
+      It 'Result.Id should be exactly 1515' {
+        $Result.Id | Should BeExactly 1515
       }
 
     }

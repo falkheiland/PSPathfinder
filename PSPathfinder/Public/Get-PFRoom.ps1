@@ -45,20 +45,19 @@ function Get-PFRoom
   {
     $UriArray = @($ComputerName, $TCPPort, $ApiVersion)
     $BaseURL = ('https://{0}:{1}/api/v{2}/infrastructure/room' -f $UriArray)
-    $FunctionStringParams = [ordered]@{
-      Page     = $Page
-      PageSize = $PageSize
-      Filter   = $Filter
-      sort     = $Sort
-    }
     switch ($PsCmdlet.ParameterSetName)
     {
-      'GetByFloorId'
+      'Get'
       {
-        $FunctionStringParams.Add('FloorId', $FloorId)
+        $FunctionStringParams = [ordered]@{
+          Page     = $Page
+          PageSize = $PageSize
+          Filter   = $Filter
+          Sort     = $Sort
+        }
+        $FunctionString = Get-PFFunctionString @FunctionStringParams
       }
     }
-    $FunctionString = Get-PFFunctionString @FunctionStringParams
   }
   Process
   {
