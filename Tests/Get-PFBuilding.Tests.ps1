@@ -17,7 +17,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
     }
 
     [object[]]$params = (Get-ChildItem function:\$Script:FunctionName).Parameters.Keys
-    $KnownParameters = 'Computername', 'TCPPort', 'ApiVersion', 'Credential', 'Id', 'Page', 'PageSize', 'Filter', 'Sort'
+    $KnownParameters = 'Computername', 'TCPPort', 'ApiVersion', 'Credential', 'Id', 'Page', 'PageSize', 'Filter', 'Sort', 'Floors'
 
     It "Should contain our specific parameters" {
       (@(Compare-Object -ReferenceObject $KnownParameters -DifferenceObject $params -IncludeEqual |
@@ -155,6 +155,50 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
       }
 
       $Result = Get-PFBuilding -Id 1515
+
+      It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result.Id should be exactly 1515' {
+        $Result.Id | Should BeExactly 1515
+      }
+
+    }
+
+    Context "Parameterset Floors" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Items = @{
+            Diagram      = '<mock_root></mock_root>'
+            Createdby    = 'Max Mustermann'
+            Id           = 1515
+            LocationId   = 15
+            LocationName = 'Berlin'
+            Modifiedby   = 'Max Mustermann'
+            Created      = '2018-02-24T13:48:00.1'
+            Name         = 'Building01'
+            Modified     = '2018-05-24T17:03:22.1'
+          }
+        }
+      }
+
+      $Result = Get-PFBuilding -Id 1515 -Floors
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Get-PFFunctionString'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{

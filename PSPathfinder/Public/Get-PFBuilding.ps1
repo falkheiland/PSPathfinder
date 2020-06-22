@@ -21,24 +21,33 @@ function Get-PFBuilding
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
     [Parameter(ParameterSetName = 'Id')]
+    [Parameter(ParameterSetName = 'Floors')]
     [Int]
     $Id,
 
     [Parameter(ParameterSetName = 'Get')]
+    [Parameter(ParameterSetName = 'Floors')]
     [Int]
     $Page,
 
     [Parameter(ParameterSetName = 'Get')]
+    [Parameter(ParameterSetName = 'Floors')]
     [int]
     $PageSize,
 
     [Parameter(ParameterSetName = 'Get')]
+    [Parameter(ParameterSetName = 'Floors')]
     [String]
     $Filter,
 
     [Parameter(ParameterSetName = 'Get')]
+    [Parameter(ParameterSetName = 'Floors')]
     [String]
-    $Sort
+    $Sort,
+
+    [Parameter(ParameterSetName = 'Floors', Mandatory)]
+    [Switch]
+    $Floors
   )
 
   Begin
@@ -47,7 +56,7 @@ function Get-PFBuilding
     $BaseURL = ('https://{0}:{1}/api/v{2}/infrastructure/building' -f $UriArray)
     switch ($PsCmdlet.ParameterSetName)
     {
-      'Get'
+      { 'Get' -or 'Floors' }
       {
         $FunctionStringParams = [ordered]@{
           Page     = $Page
@@ -77,6 +86,11 @@ function Get-PFBuilding
       {
         $params.Add('Uri', ('{0}/{1}' -f $BaseURL, $Id))
         $APIObjectColl = Invoke-PFRestMethod @Params
+      }
+      'Floors'
+      {
+        $params.Add('Uri', ('{0}/{1}/floors{2}' -f $BaseURL, $Id, $FunctionString))
+        $APIObjectColl = (Invoke-PFRestMethod @Params).Items
       }
     }
 
