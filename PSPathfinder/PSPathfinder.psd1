@@ -72,6 +72,7 @@
     FunctionsToExport = @(
         'Get-PFBuilding'
         'Get-PFCommonTag'
+        'Get-PFComponent'
         'Get-PFFloor'
         'Get-PFLocation'
         'Get-PFPhoneTag'
