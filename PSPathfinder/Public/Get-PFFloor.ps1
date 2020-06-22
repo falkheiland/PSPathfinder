@@ -48,7 +48,6 @@ function Get-PFFloor
     [Parameter(ParameterSetName = 'Rooms', Mandatory)]
     [Switch]
     $Rooms
-
   )
 
   Begin
