@@ -76,6 +76,7 @@
         'Get-PFLocation'
         'Get-PFPhoneTag'
         'Get-PFRoom'
+        'Get-PFRootGroup'
         'Get-PFServiceTag'
         'Get-PFTagGroup'
     )
