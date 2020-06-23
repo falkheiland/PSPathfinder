@@ -51,7 +51,7 @@ Import Module:
 C:\> Import-Module -Name PSPathfinder
 ```
 
-Call a Function - e.g. get status information from the UMS server:
+Call a Function - e.g. get name, description and id of all components with the name beginning with "SRV":
 
 ```powershell
 C:\> Get-PFComponent -Computername Pathfinder -Credential (Get-Credential) -Filter "Name _= SRV" 
