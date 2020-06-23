@@ -21,7 +21,7 @@ function Get-PFBuilding
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
     [Parameter(ParameterSetName = 'Id')]
-    [Parameter(ParameterSetName = 'Floors')]
+    [Parameter(ParameterSetName = 'Floors', Mandatory)]
     [Int]
     $Id,
 
