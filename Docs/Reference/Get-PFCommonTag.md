@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFCommonTag
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on (common) tags.
 
 ## SYNTAX
 
@@ -26,16 +26,23 @@ Get-PFCommonTag [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <St
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on (common) tags.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFCommonTag -Computername $CN -Credential $Cred -Filter "Name _= Switch"
 ```
 
-{{ Add example description here }}
+Gets information on (common) tags with the name beginning with "Switch".
+
+### Example 2
+```powershell
+Get-PFCommonTag -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the (common) tag with the ID 10000.
 
 ## PARAMETERS
 
@@ -101,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the (common) tag
 
 ```yaml
 Type: Int32
