@@ -82,6 +82,7 @@
         'Get-PFServiceTag'
         'Get-PFTagGroup'
         'Get-PFVlan'
+        'Update-PFComponent'
     )
 
     # Aus diesem Modul zu exportierende Cmdlets. Um optimale Leistung zu erzielen, verwenden Sie keine Platzhalter und löschen den Eintrag nicht. Verwenden Sie ein leeres Array, wenn keine zu exportierenden Cmdlets vorhanden sind.
