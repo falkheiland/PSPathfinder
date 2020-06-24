@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFTagGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on tag groups.
 
 ## SYNTAX
 
@@ -26,16 +26,30 @@ Get-PFTagGroup [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on tag groups.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFTagGroup -Computername $CN -Credential $Cred -Filter "Name _= Swi"
 ```
 
-{{ Add example description here }}
+Gets information on tag groups with the Name beginning with "Swi".
+
+### Example 2
+```powershell
+Get-PFTagGroup -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the tag group with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFTagGroup -Computername $CN -Credential $Cred
+```
+
+Gets information on the tag groups with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the tag group
 
 ```yaml
 Type: Int32

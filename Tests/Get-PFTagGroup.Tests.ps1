@@ -152,17 +152,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       Mock 'Invoke-PFRestMethod' {
         [pscustomobject]@{
-          Name          = 'Taggroup01'
-          Color         = -1
-          RootGroupId   = 1
-          RootGroupName = 'RootGroupName'
-          TagGroupId    = 3
-          TagGroupName  = 'TagGroupName'
-          Id            = 43076
-          Created       = '2015-06-26T10:53:40.637'
-          Modified      = '2015-06-29T10:49:16.487'
-          CreatedBy     = 'Pathfinder'
-          ModifiedBy    = 'Pathfinder'
+          Id = 43076
         }
       }
 
@@ -179,6 +169,36 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       It 'Result.Id should be exactly 43076' {
         $Result.Id | Should BeExactly 43076
+      }
+
+    }
+
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 43076
+          },
+          @{
+            Id = 43077
+          }
+        )
+      }
+
+      $Result = 43076, 43077 | Get-PFTagGroup
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 43076' {
+        $Result[0].Id | Should BeExactly 43076
       }
 
     }

@@ -20,8 +20,8 @@ function Get-PFLocation
     [System.Management.Automation.Credential()]
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
-    [Parameter(ParameterSetName = 'Id')]
-    [Parameter(ParameterSetName = 'Buildings', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Id', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Buildings', Mandatory)]
     [Int]
     $Id,
 

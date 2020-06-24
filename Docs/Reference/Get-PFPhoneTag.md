@@ -8,8 +8,7 @@ schema: 2.0.0
 # Get-PFPhoneTag
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
-
+Gets information on phone tags.
 ## SYNTAX
 
 ### Get (Default)
@@ -26,16 +25,30 @@ Get-PFPhoneTag [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on phone tags.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFPhoneTag -Computername $CN -Credential $Cred
 ```
 
-{{ Add example description here }}
+Gets information on phone tags.
+
+### Example 2
+```powershell
+Get-PFPhoneTag -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the phone tag with the ID 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFPhoneTag -Computername $CN -Credential $Cred
+```
+
+Gets information on the phone tags with the ID 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the phone tag
 
 ```yaml
 Type: Int32

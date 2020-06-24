@@ -20,12 +20,12 @@ function Get-PFPort
     [System.Management.Automation.Credential()]
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
-    [Parameter(ParameterSetName = 'Id', Mandatory)]
-    [Parameter(ParameterSetName = 'NetworkPath')]
-    [Parameter(ParameterSetName = 'PhoneTags')]
-    [Parameter(ParameterSetName = 'ServiceTags')]
-    [Parameter(ParameterSetName = 'CommonTags')]
-    [Parameter(ParameterSetName = 'VLANs')]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Id')]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'NetworkPath', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'PhoneTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'ServiceTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'CommonTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'VLANs', Mandatory)]
     [Int]
     $Id,
 

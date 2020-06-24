@@ -173,6 +173,46 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset ServiceTag Pipeline" {
+
+      $AMCParams = @{
+        CommandName = 'Invoke-PFRestMethod'
+        Times       = 2
+        Exactly     = $true
+      }
+
+      $Result = 1, 2 | Update-PFComponent -ServiceTagId 1
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Type should be exactly ServiceTag' {
+        $Result[0].Type | Should BeExactly 'ServiceTag'
+      }
+
+    }
+
+    Context "Parameterset ServiceTag Remove Pipeline" {
+
+      $AMCParams = @{
+        CommandName = 'Invoke-PFRestMethod'
+        Times       = 2
+        Exactly     = $true
+      }
+
+      $Result = 1, 2 | Update-PFComponent -ServiceTagId 1 -Remove
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Type should be exactly ServiceTag' {
+        $Result[0].Type | Should BeExactly 'ServiceTag'
+      }
+
+    }
+
     Context "Parameterset CommonTag" {
 
       $Result = Update-PFComponent -Id 1 -CommonTagId 1

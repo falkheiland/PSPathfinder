@@ -44,6 +44,13 @@ Get-PFCommonTag -Computername $CN -Credential $Cred -Id 10000
 
 Gets information on the (common) tag with the ID 10000.
 
+### Example 3
+```powershell
+10000, 20000 | Get-PFCommonTag -Computername $CN -Credential $Cred
+```
+
+Gets information on the (common) tags with the ID 10000 and 20000.
+
 ## PARAMETERS
 
 ### -ApiVersion

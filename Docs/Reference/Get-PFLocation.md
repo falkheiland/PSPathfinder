@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFLocation
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on locations.
 
 ## SYNTAX
 
@@ -33,16 +33,38 @@ Get-PFLocation [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on locations.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFLocation -Computername $CN -Credential $Cred -Filter 'Name _= Lei'
 ```
 
-{{ Add example description here }}
+Gets information on locations with a name beginning with "Lei".
+
+### Example 2
+```powershell
+Get-PFLocation -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the location with the Id 10000.
+
+### Example 3
+```powershell
+Get-PFLocation -Computername $CN -Credential $Cred -Id 10000 -Buildings -Filter 'Name _= Mensa'
+```
+
+Gets information on buildings with names beginning with "Mensa" of the location with the Id 10000.
+
+### Example 4
+```powershell
+Get-PFLocation -Computername $CN -Credential $Cred -Filter 'Name _= Lei' |
+  Get-PFLocation -Buildings | Select-Object -Property Name
+```
+
+Gets names of buildings for locations with names beginning with "Lei".
 
 ## PARAMETERS
 
@@ -63,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -Buildings
-{{ Fill Buildings Description }}
+Switch to get building information
 
 ```yaml
 Type: SwitchParameter
@@ -123,7 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the location
 
 ```yaml
 Type: Int32

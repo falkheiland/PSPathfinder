@@ -20,8 +20,8 @@ function Get-PFFloor
     [System.Management.Automation.Credential()]
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
-    [Parameter(ParameterSetName = 'Id')]
-    [Parameter(ParameterSetName = 'Rooms', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Id', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Rooms', Mandatory)]
     [Int]
     $Id,
 

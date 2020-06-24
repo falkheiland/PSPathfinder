@@ -53,19 +53,19 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     Context "General Execution" {
 
-      It 'Get-PFRootGroup Should not throw' {
-        { Get-PFRootGroup } | Should -Not -Throw
+      It 'Get-PFTagRootGroup Should not throw' {
+        { Get-PFTagRootGroup } | Should -Not -Throw
       }
 
-      It 'Get-PFRootGroup Error -ErrorAction Stop Should throw' {
-        { Get-PFRootGroup Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFTagRootGroup Error -ErrorAction Stop Should throw' {
+        { Get-PFTagRootGroup Error -ErrorAction Stop } | Should -Throw
       }
 
     }
 
     Context "Parameterset Get" {
 
-      $Result = Get-PFRootGroup
+      $Result = Get-PFTagRootGroup
 
       It 'Assert Get-PFFunctionString is called exactly 1 time' {
         $AMCParams = @{
@@ -125,7 +125,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       Mock 'Get-PFFunctionString' { '?page=1' }
 
-      Get-PFRootGroup -Page 1
+      Get-PFTagRootGroup -Page 1
 
       It 'Assert Get-PFFunctionString is called exactly 1 time' {
         $AMCParams = @{
@@ -151,20 +151,11 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       Mock 'Invoke-PFRestMethod' {
         [pscustomobject]@{
-          Name       = 'Rootgroup01'
-          TagIds     = @(
-            11,
-            12
-          )
-          Id         = 43076
-          Created    = '2015-06-26T10:53:40.637'
-          Modified   = '2015-06-29T10:49:16.487'
-          CreatedBy  = 'Pathfinder'
-          ModifiedBy = 'Pathfinder'
+          Id = 43076
         }
       }
 
-      $Result = Get-PFRootGroup -Id 43076
+      $Result = Get-PFTagRootGroup -Id 43076
 
       It 'Assert Invoke-PFRestMethod is called exactly 1 time' {
         $AMCParams = @{
@@ -181,6 +172,36 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 43076
+          },
+          @{
+            Id = 43077
+          }
+        )
+      }
+
+      $Result = 43076, 43077 | Get-PFTagRootGroup
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 43076' {
+        $Result[0].Id | Should BeExactly 43076
+      }
+
+    }
+
     Context "Error Handling" {
       Mock 'Invoke-PFRestMethod' {
         throw 'Error'
@@ -188,7 +209,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       It 'should throw Error' {
         {
-          Get-PFRootGroup
+          Get-PFTagRootGroup
         } | Should throw 'Error'
       }
 

@@ -163,20 +163,27 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      15, 16 | Get-PFLocation
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+    }
+
     Context "Parameterset Buildings" {
 
       Mock 'Invoke-PFRestMethod' {
         [pscustomobject]@{
           Items = @{
-            Name         = 'Building01'
-            Diagram      = '<mock_root></mock_root>'
-            LocationId   = 15
-            LocationName = 'Location01'
-            Id           = 1515
-            Createdby    = 'Max Mustermann'
-            Modifiedby   = 'Max Mustermann'
-            Created      = '2018-02-24T13:48:00.1'
-            Modified     = '2018-05-24T17:03:22.1'
+            Id = 1515
           }
         }
       }
@@ -203,6 +210,47 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       It 'Result.Id should be exactly 1515' {
         $Result.Id | Should BeExactly 1515
+      }
+
+    }
+
+    Context "Parameterset Buildings Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Items = @(
+            @{
+              Id = 1515
+            },
+            @{
+              Id = 1516
+            }
+          )
+        }
+      }
+
+      $Result = 1515, 1516 | Get-PFLocation -Buildings
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Get-PFFunctionString'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 1515' {
+        $Result[0].Id | Should BeExactly 1515
       }
 
     }

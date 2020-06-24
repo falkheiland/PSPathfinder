@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFPort
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on a port.
 
 ## SYNTAX
 
@@ -54,16 +54,30 @@ Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on a port.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFPort -Computername $CN -Credential $Cred -Id 10000
 ```
 
-{{ Add example description here }}
+Gets information on the port with the Id 10000.
+
+### Example 2
+```powershell
+Get-PFPort -Computername $CN -Credential $Cred -Id 10000 -NetworkPath
+```
+
+Gets information on the network path of the port with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFPort -Computername $CN -Credential $Cred
+```
+
+Gets information on the ports with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -84,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommonTags
-{{ Fill CommonTags Description }}
+Switch to get (common) tag information
 
 ```yaml
 Type: SwitchParameter
@@ -144,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the port
 
 ```yaml
 Type: Int32
@@ -171,7 +185,7 @@ Accept wildcard characters: False
 ```
 
 ### -NetworkPath
-{{ Fill NetworkPath Description }}
+Switch to get network path information
 
 ```yaml
 Type: SwitchParameter
@@ -216,7 +230,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhoneTags
-{{ Fill PhoneTags Description }}
+Switch to get phone tag information
 
 ```yaml
 Type: SwitchParameter
@@ -231,7 +245,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServiceTags
-{{ Fill ServiceTags Description }}
+Switch to get service tag information
 
 ```yaml
 Type: SwitchParameter
@@ -276,7 +290,7 @@ Accept wildcard characters: False
 ```
 
 ### -VLANs
-{{ Fill VLANs Description }}
+Switch to get VLAN information
 
 ```yaml
 Type: SwitchParameter

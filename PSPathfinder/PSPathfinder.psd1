@@ -78,9 +78,9 @@
         'Get-PFPhoneTag'
         'Get-PFPort'
         'Get-PFRoom'
-        'Get-PFRootGroup'
         'Get-PFServiceTag'
         'Get-PFTagGroup'
+        'Get-PFTagRootGroup'
         'Get-PFVlan'
         'Update-PFComponent'
     )

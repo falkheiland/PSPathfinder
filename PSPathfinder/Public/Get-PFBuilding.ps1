@@ -20,8 +20,8 @@ function Get-PFBuilding
     [System.Management.Automation.Credential()]
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
-    [Parameter(ParameterSetName = 'Id')]
-    [Parameter(ParameterSetName = 'Floors', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Id', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Floors', Mandatory)]
     [Int]
     $Id,
 

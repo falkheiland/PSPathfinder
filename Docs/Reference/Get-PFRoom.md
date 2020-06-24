@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFRoom
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on rooms.
 
 ## SYNTAX
 
@@ -26,16 +26,30 @@ Get-PFRoom [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on rooms.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFRoom -Computername $CN -Credential $Cred -Filter 'Number == 1234'
 ```
 
-{{ Add example description here }}
+Gets information on rooms with the Number "1234".
+
+### Example 2
+```powershell
+Get-PFRoom -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the room with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFRoom -Computername $CN -Credential $Cred
+```
+
+Gets information on the rooms with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the room
 
 ```yaml
 Type: Int32

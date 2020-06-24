@@ -185,6 +185,36 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 43076
+          }
+          @{
+            Id = 43077
+          }
+        )
+      }
+
+      $Result = 43076, 43077 | Get-PFCommonTag
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 43076' {
+        $Result[0].Id | Should BeExactly 43076
+      }
+
+    }
+
     Context "Error Handling" {
       Mock 'Invoke-PFRestMethod' {
         throw 'Error'

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFComponent
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on components.
 
 ## SYNTAX
 
@@ -82,16 +82,38 @@ Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <St
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on components.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFComponent -Computername $CN -Credential $Cred -Filter 'Name @=* Dev'
 ```
 
-{{ Add example description here }}
+Gets information on components with the name containing "Dev".
+
+### Example 2
+```powershell
+Get-PFComponent -Computername $CN -Credential $Cred -Id 100000
+```
+
+Gets information on the component with the ID 10000.
+
+### Example 3
+```powershell
+Get-PFComponent -Computername $CN -Credential $Cred -Id 100000 -VLANs
+```
+
+Gets information on the VLANs of the component with the Id 10000.
+
+### Example 4
+```powershell
+Get-PFComponent -Computername $CN -Credential $Cred -Filter 'Name @=* Dev' |
+  Get-PFComponent -VLANs | Select-Object -Unique
+```
+
+Gets information on VLANs for components with the name containing "Dev".
 
 ## PARAMETERS
 
@@ -112,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -Children
-{{ Fill Children Description }}
+Switch to get children information
 
 ```yaml
 Type: SwitchParameter
@@ -127,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommonTags
-{{ Fill CommonTags Description }}
+Switch to get (common) tag information
 
 ```yaml
 Type: SwitchParameter
@@ -187,7 +209,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the component
 
 ```yaml
 Type: Int32
@@ -202,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -Modules
-{{ Fill Modules Description }}
+Switch to get module information
 
 ```yaml
 Type: SwitchParameter
@@ -247,7 +269,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhoneTags
-{{ Fill PhoneTags Description }}
+Switch to get phone tag information
 
 ```yaml
 Type: SwitchParameter
@@ -262,7 +284,7 @@ Accept wildcard characters: False
 ```
 
 ### -Ports
-{{ Fill Ports Description }}
+Switch to get port information
 
 ```yaml
 Type: SwitchParameter
@@ -277,7 +299,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServiceTags
-{{ Fill ServiceTags Description }}
+Switch to get service tag information
 
 ```yaml
 Type: SwitchParameter
@@ -292,7 +314,7 @@ Accept wildcard characters: False
 ```
 
 ### -Slots
-{{ Fill Slots Description }}
+Switch to get slot information
 
 ```yaml
 Type: SwitchParameter
@@ -337,7 +359,7 @@ Accept wildcard characters: False
 ```
 
 ### -VLANs
-{{ Fill VLANs Description }}
+Switch to get VLAN information
 
 ```yaml
 Type: SwitchParameter

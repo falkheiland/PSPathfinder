@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFServiceTag
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on service tags.
 
 ## SYNTAX
 
@@ -26,16 +26,30 @@ Get-PFServiceTag [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <S
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on service tags.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFServiceTag -Computername $CN -Credential $Cred
 ```
 
-{{ Add example description here }}
+Gets information on service tags.
+
+### Example 2
+```powershell
+Get-PFServiceTag -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the service tag with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFServiceTag -Computername $CN -Credential $Cred
+```
+
+Gets information on the service tags with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the service tag
 
 ```yaml
 Type: Int32

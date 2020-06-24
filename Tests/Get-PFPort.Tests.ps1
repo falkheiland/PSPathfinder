@@ -83,6 +83,36 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 1
+          },
+          @{
+            Id = 2
+          }
+        )
+      }
+
+      $Result = 1, 2 | Get-PFPort
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 1' {
+        $Result[0].Id | Should BeExactly 1
+      }
+
+    }
+
     Context "Parameterset NetworkPath" {
 
       $Result = Get-PFPort -Id 1 -NetworkPath
@@ -106,6 +136,38 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       It 'Result.Object should have type [pscustomobject]' {
         $Result.Object | Should -HaveType [pscustomobject]
+      }
+
+    }
+
+    Context "Parameterset NetworkPath Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Items = @(
+            @{
+              Id = 1
+            },
+            @{
+              Id = 2
+            }
+          )
+        }
+      }
+
+      $Result = 1, 2 | Get-PFPort -NetworkPath
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 1' {
+        $Result[0].Id | Should BeExactly 1
       }
 
     }

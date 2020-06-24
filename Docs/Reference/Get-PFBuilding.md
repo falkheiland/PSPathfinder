@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFBuilding
 
 ## SYNOPSIS
-Gets information on a building.
+Gets information on buildings.
 
 ## SYNTAX
 
@@ -33,7 +33,7 @@ Get-PFBuilding [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ```
 
 ## DESCRIPTION
-Gets information on a building.
+Gets information on buildings.
 
 ## EXAMPLES
 
@@ -58,6 +58,14 @@ Get-PFBuilding -Computername $CN -Credential $Cred -Id 10000 -Floors |
 ```
 
 Gets names of the floors in the building with the ID 10000.
+
+### Example 4
+```powershell
+(@(Get-PFBuilding -Filter 'Name _= Office' |
+  Get-PFBuilding -Floors -Filter 'Name == 3OG')).Count
+```
+
+Gets the number of floors with the name "3OG" of all buildings with the name beginning with "Office".
 
 
 ## PARAMETERS

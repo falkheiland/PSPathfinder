@@ -179,6 +179,45 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 151515
+          }
+          @{
+            Id = 151516
+          }
+        )
+      }
+
+      $Result = 151515, 151516 | Get-PFFloor
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Get-PFFunctionString'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 151515' {
+        $Result[0].Id | Should BeExactly 151515
+      }
+
+    }
+
     Context "Parameterset Rooms" {
 
       Mock 'Invoke-PFRestMethod' {
@@ -226,7 +265,50 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Rooms Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@{
+          Items = @(
+            @{
+              Id = 151515
+            },
+            @{
+              Id = 151516
+            }
+          )
+        }
+      }
+
+
+      $Result = 151515, 151516 | Get-PFFloor -Rooms
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Get-PFFunctionString'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 151515' {
+        $Result[0].Id | Should BeExactly 151515
+      }
+
+    }
+
     Context "Error Handling" {
+
       Mock 'Invoke-PFRestMethod' {
         throw 'Error'
       }
@@ -240,6 +322,7 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
       It 'Result should be null or empty' {
         $Result | Should BeNullOrEmpty
       }
+
     }
   }
 

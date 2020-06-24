@@ -8,7 +8,7 @@ schema: 2.0.0
 # Update-PFComponent
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Updates information on components.
 
 ## SYNTAX
 
@@ -41,16 +41,34 @@ Update-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Updates information on components.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Update-PFComponent -Computername $CN -Credential $Cred -Id 10000 -CommonTagId 20000
 ```
 
-{{ Add example description here }}
+Sets (common) tag with Id 20000 on the component with the ID 10000.
+
+### Example 1
+```powershell
+Update-PFComponent -Computername $CN -Credential $Cred -Id 10000 -VLAN 30000 -Remove -Confirm
+```
+
+Removes VLAN with Id 30000 from the component with the ID 10000 and asks for confirmation (interactively).
+
+### Example 3
+```powershell
+$PSDefaultParameterValues = @{
+  '*-PF*:Credential'   = $Cred
+  '*-PF*:Computername' = $CN
+}
+Get-PFComponent -Filter 'Name @=* Dev' | Update-PFComponent -VLAN 30000
+```
+
+Gets all components with Names containing "Dev" and sets VLAN with ID 30000.
 
 ## PARAMETERS
 
@@ -71,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommonTagId
-{{ Fill CommonTagId Description }}
+Id of the (common) tag
 
 ```yaml
 Type: Int32
@@ -131,7 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the component
 
 ```yaml
 Type: Int32
@@ -146,7 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhoneTagId
-{{ Fill PhoneTagId Description }}
+Id of the phone tag
 
 ```yaml
 Type: Int32
@@ -161,7 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -Remove
-{{ Fill Remove Description }}
+Switch to remove information (instead of setting information without that switch (default))
 
 ```yaml
 Type: SwitchParameter
@@ -176,7 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServiceTagId
-{{ Fill ServiceTagId Description }}
+Id of the service tag
 
 ```yaml
 Type: Int32
@@ -206,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -VLANId
-{{ Fill VLANId Description }}
+Id of the VLAN
 
 ```yaml
 Type: Int32

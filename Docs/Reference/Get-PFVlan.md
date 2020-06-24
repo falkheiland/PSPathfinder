@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFVlan
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on VLANs.
 
 ## SYNTAX
 
@@ -26,16 +26,30 @@ Get-PFVlan [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on VLANs.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFVlan -Computername $CN -Credential $Cred -Filter 'Name _= SRV'
 ```
 
-{{ Add example description here }}
+Gets information on VLANs with Names beginning with "SRV".
+
+### Example 2
+```powershell
+Get-PFVlan -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the VLAN with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFVlan -Computername $CN -Credential $Cred
+```
+
+Gets information on the VLANs with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the VLAN
 
 ```yaml
 Type: Int32

@@ -5,37 +5,49 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-PFRootGroup
+# Get-PFTagRootGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on tag root groups.
 
 ## SYNTAX
 
 ### Get (Default)
 ```
-Get-PFRootGroup [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
+Get-PFTagRootGroup [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
  [[-Credential] <PSCredential>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>] [[-Sort] <String>]
  [<CommonParameters>]
 ```
 
 ### Id
 ```
-Get-PFRootGroup [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
+Get-PFTagRootGroup [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
  [[-Credential] <PSCredential>] [[-Id] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on tag root groups.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFTagGroup -Computername $CN -Credential $Cred -Filter "Name _= Netw"
 ```
 
-{{ Add example description here }}
+### Example 2
+```powershell
+Get-PFTagGroup -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the tag root group with the Id 10000.
+
+### Example 3
+```powershell
+10000, 20000 | Get-PFTagGroup -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the tag root groups with the Id 10000 and 20000.
 
 ## PARAMETERS
 
@@ -101,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the tag root group
 
 ```yaml
 Type: Int32

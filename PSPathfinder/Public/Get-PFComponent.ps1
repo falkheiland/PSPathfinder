@@ -20,15 +20,15 @@ function Get-PFComponent
     [System.Management.Automation.Credential()]
     $Credential = (Get-Credential -Message 'Enter your credentials'),
 
-    [Parameter(ParameterSetName = 'Id')]
-    [Parameter(ParameterSetName = 'PhoneTags')]
-    [Parameter(ParameterSetName = 'ServiceTags')]
-    [Parameter(ParameterSetName = 'CommonTags')]
-    [Parameter(ParameterSetName = 'VLANs')]
-    [Parameter(ParameterSetName = 'Children')]
-    [Parameter(ParameterSetName = 'Modules')]
-    [Parameter(ParameterSetName = 'Ports')]
-    [Parameter(ParameterSetName = 'Slots')]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Id')]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'PhoneTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'ServiceTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'CommonTags', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'VLANs', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Children', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Modules', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Ports', Mandatory)]
+    [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Slots', Mandatory)]
     [Int]
     $Id,
 

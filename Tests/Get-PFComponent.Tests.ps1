@@ -180,6 +180,36 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
     }
 
+    Context "Parameterset Id Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Id = 1515
+          }
+          [pscustomobject]@{
+            Id = 1516
+          }
+        )
+      }
+
+      $Result = 1515, 1516 | Get-PFComponent
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 1515' {
+        $Result[0].Id | Should BeExactly 1515
+      }
+
+    }
+
     Context "Parameterset PhoneTags" {
 
       Mock 'Invoke-PFRestMethod' {
@@ -212,6 +242,49 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
 
       It 'Result.Id should be exactly 1515' {
         $Result.Id | Should BeExactly 1515
+      }
+
+    }
+
+    Context "Parameterset PhoneTags Pipeline" {
+
+      Mock 'Invoke-PFRestMethod' {
+        [pscustomobject]@(
+          @{
+            Items = @{
+              Id = 1515
+            }
+          }
+          @{
+            Items = @{
+              Id = 1516
+            }
+          }
+        )
+      }
+
+      $Result = 1515, 1516 | Get-PFComponent -PhoneTags
+
+      It 'Assert Get-PFFunctionString is called exactly 1 time' {
+        $AMCParams = @{
+          CommandName = 'Get-PFFunctionString'
+          Times       = 1
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Assert Invoke-PFRestMethod is called exactly 2 time' {
+        $AMCParams = @{
+          CommandName = 'Invoke-PFRestMethod'
+          Times       = 2
+          Exactly     = $true
+        }
+        Assert-MockCalled @AMCParams
+      }
+
+      It 'Result[0].Id should be exactly 1515' {
+        $Result[0].Id | Should BeExactly 1515
       }
 
     }

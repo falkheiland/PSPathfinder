@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PFFloor
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets information on floors.
 
 ## SYNTAX
 
@@ -33,16 +33,39 @@ Get-PFFloor [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Gets information on floors.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PFFloor -Computername $CN -Credential $Cred -Filter 'Name == 1OG'
 ```
 
-{{ Add example description here }}
+Gets information on floors with the name "1OG".
+
+### Example 2
+```powershell
+Get-PFFloor -Computername $CN -Credential $Cred -Id 10000
+```
+
+Gets information on the floor with the Id 10000.
+
+### Example 3
+```powershell
+Get-PFFloor -Computername $CN -Credential $Cred -Id 10000 -Rooms -Filter 'Number _= 110'
+```
+
+Gets information on the rooms with numbers beginning with "110" of the floor with the Id 10000.
+
+### Example 4
+```powershell
+Get-PFFloor -Computername $CN -Credential $Cred -Filter 'Name == 1OG' |
+  Get-PFFloor -Rooms | Select-Object -Property Number
+```
+
+Gets numbers of rooms of floors with names "1OG".
+
 
 ## PARAMETERS
 
@@ -108,7 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Id of the floor
 
 ```yaml
 Type: Int32
@@ -165,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -Rooms
-{{ Fill Rooms Description }}
+Switch to get room information
 
 ```yaml
 Type: SwitchParameter
