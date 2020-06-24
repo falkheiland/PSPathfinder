@@ -11,7 +11,7 @@
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Getting Started](#getting-started)
+- [Basis usage](#basic-usage)
 - [Documentation](#documentation)
 - [Maintainer](#maintainer)
 - [License](#license)
