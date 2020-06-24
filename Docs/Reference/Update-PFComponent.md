@@ -1,7 +1,7 @@
 ---
 external help file: PSPathfinder-help.xml
 Module Name: PSPathfinder
-online version: https://github.com/falkheiland/PSPathfinder/Docs/Reference/Update-PFComponent.md
+online version: https://github.com/falkheiland/PSPathfinder/blob/main/Docs/Reference/Update-PFComponent.md
 schema: 2.0.0
 ---
 
