@@ -11,3 +11,15 @@
 ### Fixed
 
 ### Removed
+
+## v0.0.2 - 20200624
+
+### Added
+
+### Changed
+
+### Fixed
+
+* online help path in Docs and external help
+
+### Removed
