@@ -111,7 +111,7 @@
             Tags         = @('Pathfinder', 'tripunkt')
 
             # Eine URL zur Lizenz für dieses Modul.
-            LicenseUri   = 'https://github.com/falkheiland/PSPathfinder/blob/master/LICENSE'
+            LicenseUri   = 'https://github.com/falkheiland/PSPathfinder/blob/main/LICENSE'
 
             # Eine URL zur Hauptwebsite für dieses Projekt.
             ProjectUri   = 'https://github.com/falkheiland/PSPathfinder'

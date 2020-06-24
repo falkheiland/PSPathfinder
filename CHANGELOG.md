@@ -1,4 +1,4 @@
-# PSIGEL Changelog
+# PSPathfinder Changelog
 
 ## v0.0.1 - 20200622
 
