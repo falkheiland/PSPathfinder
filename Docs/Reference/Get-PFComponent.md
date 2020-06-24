@@ -22,56 +22,56 @@ Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <St
 ### Slots
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-Slots] [<CommonParameters>]
 ```
 
 ### Ports
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-Ports] [<CommonParameters>]
 ```
 
 ### Modules
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-Modules] [<CommonParameters>]
 ```
 
 ### Children
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-Children] [<CommonParameters>]
 ```
 
 ### VLANs
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-VLANs] [<CommonParameters>]
 ```
 
 ### CommonTags
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-CommonTags] [<CommonParameters>]
 ```
 
 ### ServiceTags
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-ServiceTags] [<CommonParameters>]
 ```
 
 ### PhoneTags
 ```
 Get-PFComponent [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-PhoneTags] [<CommonParameters>]
 ```
 
@@ -213,13 +213,25 @@ Id of the component
 
 ```yaml
 Type: Int32
-Parameter Sets: Slots, Ports, Modules, Children, VLANs, CommonTags, ServiceTags, PhoneTags, Id
+Parameter Sets: Slots, Ports, Modules, Children, VLANs, CommonTags, ServiceTags, PhoneTags
+Aliases:
+
+Required: True
+Position: Benannt
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+```yaml
+Type: Int32
+Parameter Sets: Id
 Aliases:
 
 Required: False
 Position: Benannt
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

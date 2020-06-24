@@ -29,7 +29,7 @@ Get-PFFloor [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String
 ### Id
 ```
 Get-PFFloor [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [<CommonParameters>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,7 +65,6 @@ Get-PFFloor -Computername $CN -Credential $Cred -Filter 'Name == 1OG' |
 ```
 
 Gets numbers of rooms of floors with names "1OG".
-
 
 ## PARAMETERS
 
@@ -135,25 +134,13 @@ Id of the floor
 
 ```yaml
 Type: Int32
-Parameter Sets: Rooms
+Parameter Sets: Rooms, Id
 Aliases:
 
 Required: True
 Position: Benannt
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type: Int32
-Parameter Sets: Id
-Aliases:
-
-Required: False
-Position: Benannt
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

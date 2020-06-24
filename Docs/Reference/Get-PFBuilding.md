@@ -22,14 +22,14 @@ Get-PFBuilding [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ### Floors
 ```
 Get-PFBuilding [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-Floors] [<CommonParameters>]
 ```
 
 ### Id
 ```
 Get-PFBuilding [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [<CommonParameters>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -66,7 +66,6 @@ Gets names of the floors in the building with the ID 10000.
 ```
 
 Gets the number of floors with the name "3OG" of all buildings with the name beginning with "Office".
-
 
 ## PARAMETERS
 
@@ -154,10 +153,10 @@ Type: Int32
 Parameter Sets: Floors, Id
 Aliases:
 
-Required: False
+Required: True
 Position: Benannt
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

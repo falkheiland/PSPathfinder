@@ -9,6 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 Gets information on phone tags.
+
 ## SYNTAX
 
 ### Get (Default)
@@ -124,7 +125,7 @@ Aliases:
 Required: False
 Position: Benannt
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

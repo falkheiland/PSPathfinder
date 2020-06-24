@@ -15,41 +15,41 @@ Gets information on a port.
 ### Id (Default)
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [-Id] <Int32> [<CommonParameters>]
+ [[-Credential] <PSCredential>] [[-Id] <Int32>] [<CommonParameters>]
 ```
 
 ### VLANs
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-VLANs] [<CommonParameters>]
 ```
 
 ### CommonTags
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-CommonTags] [<CommonParameters>]
 ```
 
 ### ServiceTags
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-ServiceTags] [<CommonParameters>]
 ```
 
 ### PhoneTags
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-PhoneTags] [<CommonParameters>]
 ```
 
 ### NetworkPath
 ```
 Get-PFPort [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [[-Page] <Int32>] [[-PageSize] <Int32>] [[-Filter] <String>]
  [[-Sort] <String>] [-NetworkPath] [<CommonParameters>]
 ```
 
@@ -165,10 +165,10 @@ Type: Int32
 Parameter Sets: Id
 Aliases:
 
-Required: True
+Required: False
 Position: Benannt
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -177,10 +177,10 @@ Type: Int32
 Parameter Sets: VLANs, CommonTags, ServiceTags, PhoneTags, NetworkPath
 Aliases:
 
-Required: False
+Required: True
 Position: Benannt
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

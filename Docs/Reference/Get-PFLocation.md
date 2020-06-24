@@ -29,7 +29,7 @@ Get-PFLocation [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <Str
 ### Id
 ```
 Get-PFLocation [-Computername] <String> [[-TCPPort] <Int32>] [[-ApiVersion] <String>]
- [[-Credential] <PSCredential>] [[-Id] <Int32>] [<CommonParameters>]
+ [[-Credential] <PSCredential>] [-Id] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -149,25 +149,13 @@ Id of the location
 
 ```yaml
 Type: Int32
-Parameter Sets: Buildings
+Parameter Sets: Buildings, Id
 Aliases:
 
 Required: True
 Position: Benannt
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type: Int32
-Parameter Sets: Id
-Aliases:
-
-Required: False
-Position: Benannt
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
