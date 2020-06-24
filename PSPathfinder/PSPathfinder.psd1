@@ -24,7 +24,6 @@
     Author            = 'Falk Heiland'
 
     # Unternehmen oder Hersteller dieses Moduls
-    CompanyName       = 'n.a.'
 
     # Urheberrechtserklärung für dieses Modul
     Copyright         = '(c) 2020 Falk Heiland. Alle Rechte vorbehalten.'

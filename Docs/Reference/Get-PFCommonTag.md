@@ -1,7 +1,7 @@
 ---
 external help file: PSPathfinder-help.xml
 Module Name: PSPathfinder
-online version:
+online version: https://github.com/falkheiland/PSPathfinder/Docs/Reference/Get-PFCommonTag.md
 schema: 2.0.0
 ---
 
