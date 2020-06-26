@@ -58,8 +58,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFVlan } | Should -Not -Throw
       }
 
-      It 'Get-PFVlan Error -ErrorAction Stop Should throw' {
-        { Get-PFVlan Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFVlan -Error -ErrorAction Stop Should throw' {
+        { Get-PFVlan -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

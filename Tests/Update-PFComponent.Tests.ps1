@@ -53,8 +53,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Update-PFComponent -Id 1 -VLANId 1 } | Should -Not -Throw
       }
 
-      It 'Update-PFComponent -Id 1 -VLANId 1 Error -ErrorAction Stop Should throw' {
-        { Update-PFComponent -Id 1 -VLANId 1 Error -ErrorAction Stop } | Should -Throw
+      It 'Update-PFComponent -Id 1 -VLANId 1 -Error -ErrorAction Stop Should throw' {
+        { Update-PFComponent -Id 1 -VLANId 1 -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

@@ -52,8 +52,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFPort -Id 1 } | Should -Not -Throw
       }
 
-      It 'Get-PFPort -Id 1 Error -ErrorAction Stop Should throw' {
-        { Get-PFPort -Id 1 Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFPort -Id 1 -Error -ErrorAction Stop Should throw' {
+        { Get-PFPort -Id 1 -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

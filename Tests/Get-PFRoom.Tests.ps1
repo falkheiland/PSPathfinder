@@ -59,8 +59,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFRoom } | Should -Not -Throw
       }
 
-      It 'Get-PFRoom Error -ErrorAction Stop Should throw' {
-        { Get-PFRoom Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFRoom -Error -ErrorAction Stop Should throw' {
+        { Get-PFRoom -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

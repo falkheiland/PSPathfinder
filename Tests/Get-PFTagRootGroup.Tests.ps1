@@ -57,8 +57,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFTagRootGroup } | Should -Not -Throw
       }
 
-      It 'Get-PFTagRootGroup Error -ErrorAction Stop Should throw' {
-        { Get-PFTagRootGroup Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFTagRootGroup -Error -ErrorAction Stop Should throw' {
+        { Get-PFTagRootGroup -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

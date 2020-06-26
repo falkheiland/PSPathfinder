@@ -58,8 +58,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFLocation } | Should -Not -Throw
       }
 
-      It 'Get-PFLocation Error -ErrorAction Stop Should throw' {
-        { Get-PFLocation Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFLocation -Error -ErrorAction Stop Should throw' {
+        { Get-PFLocation -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

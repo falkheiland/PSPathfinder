@@ -55,8 +55,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFFloor } | Should -Not -Throw
       }
 
-      It 'Get-PFFloor Error -ErrorAction Stop Should throw' {
-        { Get-PFFloor Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFFloor -Error -ErrorAction Stop Should throw' {
+        { Get-PFFloor -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

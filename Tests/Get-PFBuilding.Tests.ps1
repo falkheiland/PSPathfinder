@@ -56,8 +56,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFBuilding } | Should -Not -Throw
       }
 
-      It 'Get-PFBuilding Error -ErrorAction Stop Should throw' {
-        { Get-PFBuilding Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFBuilding -Error -ErrorAction Stop Should throw' {
+        { Get-PFBuilding -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

@@ -60,8 +60,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFCommonTag } | Should -Not -Throw
       }
 
-      It 'Get-PFCommonTag Error -ErrorAction Stop Should throw' {
-        { Get-PFCommonTag Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFCommonTag -Error -ErrorAction Stop Should throw' {
+        { Get-PFCommonTag -Error -ErrorAction Stop } | Should -Throw
       }
 
     }

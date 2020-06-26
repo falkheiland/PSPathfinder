@@ -58,8 +58,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Get-PFServiceTag } | Should -Not -Throw
       }
 
-      It 'Get-PFServiceTag Error -ErrorAction Stop Should throw' {
-        { Get-PFServiceTag Error -ErrorAction Stop } | Should -Throw
+      It 'Get-PFServiceTag -Error -ErrorAction Stop Should throw' {
+        { Get-PFServiceTag -Error -ErrorAction Stop } | Should -Throw
       }
 
     }
