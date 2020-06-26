@@ -53,8 +53,8 @@ Describe "$Script:FunctionName Unit Tests" -Tag 'UnitTests' {
         { Remove-PFPhoneTag -Id 1 } | Should -Not -Throw
       }
 
-      It 'Remove-PFPhoneTag -Id 1 --Error -ErrorAction Stop Should throw' {
-        { Remove-PFPhoneTag -Id 1 --Error -ErrorAction Stop } | Should -Throw
+      It 'Remove-PFPhoneTag -Id 1 -Error -ErrorAction Stop Should throw' {
+        { Remove-PFPhoneTag -Id 1 -Error -ErrorAction Stop } | Should -Throw
       }
 
     }
