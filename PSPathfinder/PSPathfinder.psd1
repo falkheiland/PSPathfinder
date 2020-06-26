@@ -81,6 +81,7 @@
         'Get-PFTagGroup'
         'Get-PFTagRootGroup'
         'Get-PFVlan'
+        'Remove-PFPhoneTag'
         'Update-PFComponent'
     )
 
