@@ -85,6 +85,8 @@ SRV-DC-L-01          DomainController 01            114000
   - [Get-PFTagGroup](/Docs/Reference/Get-PFTagGroup.md)
   - [Get-PFTagRootGroup](/Docs/Reference/Get-PFTagRootGroup.md)
   - [Get-PFVlan](/Docs/Reference/Get-PFVlan.md)
+  - [Remove-PFTagGroup](/Docs/Reference/Remove-PFTagGroup.md)
+  - [Remove-PFPhoneTag](/Docs/Reference/Remove-PFPhoneTag.md)
   - [Update-PFComponent](/Docs/Reference/Update-PFComponent.md)
 
 - [Changelog](CHANGELOG.md)

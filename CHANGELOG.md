@@ -1,5 +1,20 @@
 # PSPathfinder Changelog
 
+## v0.0.2 - yyyyMMdd
+
+### Added
+
+* Remove-PFTagGroup
+* Remove-PFPhoneTag
+
+### Changed
+
+### Fixed
+
+* online help path in Docs and external help
+
+### Removed
+
 ## v0.0.1 - 20200622
 
 * Initial Release
@@ -12,14 +27,3 @@
 
 ### Removed
 
-## v0.0.2 - 20200624
-
-### Added
-
-### Changed
-
-### Fixed
-
-* online help path in Docs and external help
-
-### Removed
